@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 223.0, 118.0, 743.0, 657.0 ],
+		"rect" : [ 1954.0, 172.0, 893.0, 450.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,12 +39,36 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-31",
+					"linecount" : 8,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 402.5, 311.0, 502.0, 114.0 ],
+					"text" : "A little script that allows you to play arbitrary YouTube videos in a [jit.movie].\n\nClick [script npm install], then [script start] below\n\nJust paste any valid youtube URL in the [open] message, and click it.\n\nFor details on the script, refer here: https://www.znibbl.es/videos/10-node-in-max-01-watch-youtube-videos"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "toggle",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 158.0, 103.0, 24.0, 24.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "erase" ],
-					"patching_rect" : [ 105.0, 184.0, 57.0, 22.0 ],
+					"patching_rect" : [ 158.0, 181.0, 57.0, 22.0 ],
 					"text" : "t b erase"
 				}
 
@@ -209,18 +233,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-31",
-					"linecount" : 8,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 402.5, 311.0, 502.0, 114.0 ],
-					"text" : "A little script that allows you to play arbitrary YouTube videos in a [jit.movie].\n\nClick [script npm install], then [script start] below\n\nJust paste any valid youtube URL in the [open] message, and click it.\n\nFor details on the script, refer here: https://www.znibbl.es/videos/10-node-in-max-01-watch-youtube-videos"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"fontsize" : 24.0,
 					"id" : "obj-29",
 					"maxclass" : "comment",
@@ -280,8 +292,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 105.0, 150.0, 119.0, 22.0 ],
-					"text" : "qmetro 40 @active 1"
+					"patching_rect" : [ 158.0, 147.0, 63.0, 22.0 ],
+					"text" : "qmetro 40"
 				}
 
 			}
@@ -360,6 +372,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-16", 0 ],
 					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}

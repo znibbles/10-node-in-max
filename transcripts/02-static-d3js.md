@@ -16,13 +16,14 @@ In the `package.json` file we specify three dependencies:
 - `minimist`, a minimal command line argument parser, and
 - `svg2png` for converting the vector format SVG to a rasterized PNG version
 
-Our `index.js` is really minimalistic, but already provides some extension points, so let's go over it step by step.
+Our `static-d3.js` is really minimalistic, but already provides some extension points, so let's go over it step by step.
 
-First we read CSS styles from a file in our mounted `data` folder. By default, it should be called `style.css`, but the `args.s` parameter denotes that we can specify a `-s` argument containing the name of such a file when invoking the command. This `args` object is provided by the `minimist` package here.
+First we read CSS styles from a file in our mounted `data` folder. By default, it should be called `style.css`, but you can change this by calling the `style` handler up here from the Max patch.
 
-This `styles` text is then passed to the `D3Node` constructor. Next we provide margin, width and height parameters, which we'll use to create an `svg` root node here. We then pass the `d3` object, the created `svg`, and an object containing options (`width`, `height`, and `margin`) to the main graphics generating script, which can also be specified at runtime using the `-i` option.
 
-Last we determine if the user requested an SVG, HTML or PNG output by parsing the extension of the `-o` argument. If none matches, we print the SVG string to the console.
+This `styles` text is then passed to the `D3Node` constructor. Next we provide margin, width and height parameters, which we'll use to create an `svg` root node here. We then pass the `d3` object, the created `svg`, and an object containing options (`width`, `height`, and `margin`) to the main graphics generating script, which also has to be specified at runtime as the handler's parameter.
+
+Last we render a PNG file of the specified dimensions, and send the absolute path as a message to the Max object's outlet.
 
 ## Differences to Browser-Rendered D3
 
@@ -34,23 +35,3 @@ But what, in contrast to a browser, you _can_ do is ask the filesystem to simply
 
 
 ## Demo
-
-Let's give it a spin.
-
-	$ docker build -t static-d3 .  
-	
-As mentioned, the `npm install` takes a little while. 
-
-Now let's try out all the options. For the sake of completeness, I have included a sample `style.css` here, which is not needed by this example of a `d3` script.
-
-	$ docker run --rm -v $PWD/data:/usr/src/app/data static-d3 -o groupchart.svg -i groupchart.js
-
-There is our SVG!
-
-	$ docker run --rm -v $PWD/data:/usr/src/app/data static-d3 -o groupchart.html -i groupchart.js
-
-There is our SVG, rendered in an HTML file.
-
-	$ docker run --rm -v $PWD/data:/usr/src/app/data static-d3 -o groupchart.png -i groupchart.js
-
-And last but not least, here is our graphic, rendered as a rasterized PNG version.

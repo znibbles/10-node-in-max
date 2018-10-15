@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "d3-node": "^2.1.0",
-    "minimist": "^1.2.0",
     "svg2png": "^4.1.1"
   }
 }
