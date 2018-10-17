@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1954.0, 172.0, 893.0, 450.0 ],
+		"rect" : [ 232.0, 274.0, 893.0, 450.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,12 @@
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-31",
-					"linecount" : 8,
+					"linecount" : 9,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 402.5, 311.0, 502.0, 114.0 ],
-					"text" : "A little script that allows you to play arbitrary YouTube videos in a [jit.movie].\n\nClick [script npm install], then [script start] below\n\nJust paste any valid youtube URL in the [open] message, and click it.\n\nFor details on the script, refer here: https://www.znibbl.es/videos/10-node-in-max-01-watch-youtube-videos"
+					"patching_rect" : [ 402.5, 311.0, 502.0, 127.0 ],
+					"text" : "A little script that allows you to render PNG images from a D3JS script.\n\nClick [script npm install], then [script start] below\n\nSend a [d3] message followed by a valid d3js script file. An example based on Mike Bostock's grouped bar chart is provided. https://bl.ocks.org/mbostock/3887051\n\nFor details on the script, refer here: https://www.znibbl.es/videos/10-node-in-max-02-static-d3js"
 				}
 
 			}
@@ -179,7 +179,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 841.5, 430.0, 63.0, 22.0 ],
+					"patching_rect" : [ 841.5, 437.0, 63.0, 22.0 ],
 					"text" : "script stop"
 				}
 
@@ -191,7 +191,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 754.0, 430.0, 64.0, 22.0 ],
+					"patching_rect" : [ 754.0, 437.0, 64.0, 22.0 ],
 					"text" : "script start"
 				}
 
@@ -202,7 +202,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 635.5, 461.0, 61.0, 22.0 ],
+					"patching_rect" : [ 635.5, 468.0, 61.0, 22.0 ],
 					"text" : "s to_node"
 				}
 
@@ -214,7 +214,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 635.5, 430.0, 98.0, 22.0 ],
+					"patching_rect" : [ 635.5, 437.0, 98.0, 22.0 ],
 					"text" : "script npm install"
 				}
 
@@ -226,7 +226,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 402.5, 431.0, 231.0, 20.0 ],
+					"patching_rect" : [ 402.5, 438.0, 231.0, 20.0 ],
 					"text" : "Click this to install necessary libraries:"
 				}
 

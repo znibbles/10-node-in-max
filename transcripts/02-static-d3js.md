@@ -8,18 +8,14 @@ We'll wrap this in a `node.script` and use it to render PNG files to be used in 
 
 ## Rendering Static SVG or PNGs
 
-Let's quickly glance over the `nodejs` source code. We will make use of build-time copying of files and installing of npm modules (the `index.js` and `package.json` files), and we will use a bind mount on the `data` folder to inject a JS file that renders a graphic along with style information and the data to render.
+Let's quickly glance over the `nodejs` source code. In the `package.json` file we specify two dependencies: 
 
-In the `package.json` file we specify three dependencies: 
-
-- `d3-node`, responsible for wrapping the `d3` library
-- `minimist`, a minimal command line argument parser, and
+- `d3-node`, responsible for wrapping the `d3` library, and
 - `svg2png` for converting the vector format SVG to a rasterized PNG version
 
 Our `static-d3.js` is really minimalistic, but already provides some extension points, so let's go over it step by step.
 
 First we read CSS styles from a file in our mounted `data` folder. By default, it should be called `style.css`, but you can change this by calling the `style` handler up here from the Max patch.
-
 
 This `styles` text is then passed to the `D3Node` constructor. Next we provide margin, width and height parameters, which we'll use to create an `svg` root node here. We then pass the `d3` object, the created `svg`, and an object containing options (`width`, `height`, and `margin`) to the main graphics generating script, which also has to be specified at runtime as the handler's parameter.
 
@@ -35,3 +31,11 @@ But what, in contrast to a browser, you _can_ do is ask the filesystem to simply
 
 
 ## Demo
+
+To get started, we first need to call `script npm install` to install the dependencies. Our NPM status shows green, so that should have worked. It may take some time the first time to do this, because the `svg2png` package compiles some native code. 
+
+Next we send the `script start` message. In the debug tool, we see that the process was indeed started.
+
+We click on `d3 groupchart.js`, thus specifying the filename of the input script. It takes some time to render the PNG image from the actual SVG output, but here it is, painted to a video plane. I've set the `erase_color` attribute of the scene to white, because the PNG actually contains an alpha channel rendering the background transparent, so if we left the background gray, we wouldn't be able to see that much.
+
+Anyways, a convenient way to generate beautiful infographics and use them in your installation/performance or whatever on the fly. With a few tweaks, we could even go on and supply some "real time" data.
