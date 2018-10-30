@@ -32,7 +32,7 @@ But what, in contrast to a browser, you _can_ do is ask the filesystem to simply
 
 ## Demo
 
-To get started, we first need to call `script npm install` to install the dependencies. Our NPM status shows green, so that should have worked. It may take some time the first time to do this, because the `svg2png` package compiles some native code. 
+To get started, we first need to call `script npm install` to install the dependencies. It may take some time the first time to do this, because the `svg2png` package compiles some native code. Now it's done installing, our NPM status shows green, so that should have worked.
 
 Next we send the `script start` message. In the debug tool, we see that the process was indeed started.
 
