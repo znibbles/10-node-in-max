@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 433.0, 210.0, 1017.0, 536.0 ],
+		"rect" : [ 297.0, 134.0, 1017.0, 536.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -44,7 +44,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 39.0, 212.0, 50.0, 22.0 ]
+					"patching_rect" : [ 39.0, 212.0, 50.0, 22.0 ],
+					"text" : "bla"
 				}
 
 			}
@@ -112,12 +113,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-31",
-					"linecount" : 9,
+					"linecount" : 10,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 402.5, 284.0, 581.0, 127.0 ],
-					"text" : "A little script that allows node.script to act as a socketio client\n\nClick [script npm install], then [script start] below\n\nSend a [connect] message followed by the URL of a listening socket.io server (e.g. localhost:3000).\nOpen that server URL in a browser\nSend a [message] message followed by an arbitrary message and watch them appear in the browser\n\nFor details on the script, refer here: https://www.znibbl.es/videos/10-node-in-max-02-static-d3js"
+					"patching_rect" : [ 402.5, 284.0, 581.0, 141.0 ],
+					"text" : "A little script that allows node.script to act as a socketio client\n\nClick [script npm install], then [script start] below\n\nSend a [connect] message followed by the URL of a listening socket.io server (e.g. localhost:3000).\nOpen that server URL in a browser\nSend a [message] message followed by an arbitrary message and watch them appear in the browser\nListen for \"talkback\" messages from the inbound socket\n\nFor details on the script, refer here: https://www.znibbl.es/video/socketio-client"
 				}
 
 			}
