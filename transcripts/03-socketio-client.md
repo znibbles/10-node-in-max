@@ -23,3 +23,25 @@ Of course, on the client we need to perform the mirrored action. We start by inc
 We call `npm init` in our root directory and install `socket.io-client`. In a file we call equally `socketio-client.js`, we require the `maxApi`, as always, and the socket.io client library. We declare a global `socket` variable, because we are going to need it in multiple Max handlers. 
 
 First we add a `connect` handler, which we pass a `url` parameter. We tell `io` to connect to that URL. Next we create a Max patch where we load that script, start it, and call `connect`. And voila, in the server log we see that a second user has connected.
+
+To close the loop, let's add a `disconnect` handler. In it, we simply close the socket on the client side. And furthermore we add a `message` handler to actually send messages to the server. 
+
+On the server, let's first listen for the `disconnect` event. We restart, connect and afterwards disconnect, and here is our message (the first `a user connected` message stems from the browser still running and connecting in the background). 
+
+## Forwarding Messages
+
+Alright, what do we do when a message arrives? Let's do the easiest thing possible and transmit it to all connected clients. Socket.io is capable of much more subtle ways of routing, but that's beyond the scope of this video. 
+
+Now is also the time to focus our attention on the browser client again. When a `message` is received on the socket, we just set the `#message`'s div's `innerText` to that message. Alright, let's send a message from the Max patch, by simply prepending an integer with `message`. Woosh, it works!
+
+## Talking Back
+
+There's one more tweak I'd like to show you. By attaching an event listener to the button, we can send a `talkback` message from the browser. Just don't forget to empty the input box afterwards!
+
+On the server, we need to provide a way of relaying those talkback messages, too. This time, we're calling `socket.broadcast.emit`, which means nothing else than "send to everybody but the sender". That way we can avoid unnecessary traffic. 
+
+Back in the Node4Max javascript file, we just need to register a callback on the socket, like we have done so many times now. Basically we can choose the event string (`talkback`) quite freely, please refer to the documentation! In it we just send the message out the `node.script` object's outlet. 
+
+Accordingly, we create a `[route]` object and look for `talkback` messages. Let's try it out, enter a message in the browser - and here it is!
+
+If you think this through, you can leverage all the awesomeness of WebSockets, e.g. scripting patchers from one to the other, even over the web if you like, etc. Socket.io will even let you transmit binary data, maybe I'll try that out in the future. 
