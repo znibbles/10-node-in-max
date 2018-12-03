@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { 
+        font-family: 'Montserrat', sans-serif; 
+        color: white;
+        background: black;
+      }
+
+      #container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        font-size: 6rem;
+      }
+      .form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="message"></div>
+    </div>
+    <div class="form">
+      <input id="m"/><button>Send</button>
+    </div>    
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const socket = io();
+        document.querySelector('button').addEventListener('click', function(e) {
+          e.preventDefault();
+          socket.emit('talkback', document.querySelector('#m').value);
+          document.querySelector('#m').value = '';
+        });
+        socket.on('message', function(msg) {
+          document.querySelector('#message').innerText = msg;
+        });
+      });
+    </script>
+  </body>
+</html>
