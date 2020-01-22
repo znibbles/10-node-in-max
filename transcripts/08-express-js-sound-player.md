@@ -19,11 +19,9 @@ app.get("/sound/:id", (req, res) => {
 
 The `":id"` part of the route denotes a _dynamic segment_, and will be replaced by whatever `id` you specify in your GET request. We'll get to that later.
 
-
-
 ### Parsing CSV Data
 
-Now here's the trickiest part of the JavaScript part: parsing thee supplied CSV file and returning the relevant row. For that we are going to use an npm package called [`csv-parse`](https://www.npmjs.com/package/csv-parse). It's used as follows: We are going to require the `parse` method and instantiate a `parser`. It receives an empty options object and a callback containing the parsed `data` as a function argument. Let's leave the function body empty for a second and `pipe` the CSV file's contents into the `parser` using `fs.createReadStream`.
+Now here's the trickiest part of the JavaScript part: parsing the supplied CSV file and returning the relevant row. For that we are going to use an npm package called [`csv-parse`](https://www.npmjs.com/package/csv-parse). It's used as follows: We are going to require the `parse` method and instantiate a `parser`. It receives an empty options object and a callback containing the parsed `data` as a function argument. Let's leave the function body empty for a second and `pipe` the CSV file's contents into the `parser` using `fs.createReadStream`.
 
 What are the contents of that file, anyway? To demonstrate this, I've just listed the sound files' names in it.
 
@@ -47,7 +45,7 @@ In the Max patch, the created JSON object is represented as a `[dict]`. Let's ju
 
 > if two dictionaries are joined, and both contain the same key, the key in the dictionary being joined (right inlet) overrides the key for the dictionary input (left inlet)
 
-Now this is exactly our situation: When a new sound should be played back for a certain track, we need to _override_ the key, i.e. pass the new `[dict]` in on the right hand side, and create a new `[dict]` to store the current contents of the merged `[dict]`s. That object's outlet goes into the _left (hot)_ inlet of `[dict.join]`. Now our patch is set up to _replace_ old keys with new ones while retaining the rest of the `[dict]`s contents. All we need to do now is _trigger_ the update process of `[dict.join]` with a bang to the "storage" `[dict]`, and we are going to do this with a `[t b l]`, that way we can ensure that first the new JSON object from the is passed to `[dict.join]`, and only afterwards is the merge triggered. We can even delete this intermediary `[dict]` now since it is only passed as a `list`.
+Now this is exactly our situation: When a new sound should be played back for a certain track, we need to _override_ the key, i.e. pass the new `[dict]` in on the right hand side, and create a new `[dict]` to store the current contents of the merged `[dict]`s. That object's outlet goes into the _left (hot)_ inlet of `[dict.join]`. Now our patch is set up to _replace_ old keys with new ones while retaining the rest of the `[dict]`s contents. All we need to do now is _trigger_ the update process of `[dict.join]` with a bang to the "storage" `[dict]`, and we are going to do this with a `[t b l]`, that way we can ensure that first the new JSON object from the `[node.script]` is passed to `[dict.join]`, and only afterwards is the merge triggered. We can even delete this intermediary `[dict]` now since it is only passed as a `list`.
 
 ### Sounding Out
 
